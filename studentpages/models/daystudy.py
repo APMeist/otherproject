@@ -1,4 +1,13 @@
 from django.db import models
 
-# Ну каждую строчку тут вписывать не хочу. Должен быть способ сделать лучше. Расчетная часть - Пара + Время с тото до тото. : А
-# Изменение 1: Способа нет, придется выкручиваться. : А
+
+class daystudy(models.Model):
+    firstlesson = models.ForeignKey('lesson')
+    secondlesson = models.ForeignKey('lesson')
+    thirdlesson = models.ForeignKey('lesson')
+    fourthlesson = models.ForeignKey('lesson')
+    fifthlesson = models.ForeignKey('lesson')
+    sixthlesson = models.ForeignKey('lesson')
+    seventhlesson = models.ForeignKey('lesson')
+    datefield = models.DateField()
+    
