@@ -1,7 +1,7 @@
 from django.db import models
 
-class daylist(models.Model):
-    lesson = models.ForeignKey('lesson', on_delete=models.CASCADE, related_name='timetable_entries')
+class Daylist(models.Model):
+    lesson = models.ForeignKey('Lesson', on_delete=models.CASCADE, related_name='timetable_entries')
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()

@@ -3,7 +3,7 @@ from django.db import models
 # Студент. Хочу понять как генерировать юньку. В юзерах - пассворд.
 
 
-class student(models.Model):
+class Student(models.Model):
     name = models.TextField()
     surname = models.TextField()
     uniquekey = models.CharField()
