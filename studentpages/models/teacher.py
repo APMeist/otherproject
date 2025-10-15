@@ -2,8 +2,8 @@ from django.db import models
 
 class Teacher(models.Model):
     fkuser = models.ForeignKey('User', on_delete=models.CASCADE)
-    name = models.TextField()
-    surname = models.TextField()
+    name = models.CharField(max_length=20)
+    surname = models.CharField(max_length=20)
     subjects = models.ManyToManyField('Subject', related_name='teachers')
     
     def __str__(self):

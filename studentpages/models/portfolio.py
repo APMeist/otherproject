@@ -3,6 +3,6 @@ from django.db import models
 # тут должна быть модель для портфолио. По факту оно вот такое тип. 
 
 class Portfolio(models.Model):
-    fileportfolio = models.BinaryField
-    description = models.CharField
-    studentportowner = models.ForeignKey
+    fileportfolio = models.BinaryField()
+    description = models.TextField()
+    studentportowner = models.ForeignKey('Student', related_name='portfolio', default=None,  on_delete=models.CASCADE)
