@@ -1,5 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect 
+from django.shortcuts import render
 
 # Create your views here.
 
@@ -12,10 +11,9 @@ from django.shortcuts import render, redirect
 # Глав.страница
 
 
-def mainPage(request):
+def main_page(request):
     return render(request, 'mainsite/mainpage.html')
 
-
-def aboutPage(request):
+def about_page(request):
     return render(request, 'mainsite/about.html')
 
