@@ -3,7 +3,7 @@ from .lesson import Lesson
 from .portfolio import Portfolio
 from .student import Student
 from .studgroup import Studgroup
-from .subject import Subject
+from .department import Department
 from .task import Task
 from .taskanswer import Taskanswer
 from .teacher import Teacher

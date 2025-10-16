@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from studentpages.models import Student, Teacher, User, Taskanswer, Task, Daylist, Lesson, Portfolio, Studgroup, Subject
+from studentpages.models import Student, Teacher, User, Taskanswer, Task, Daylist, Lesson, Portfolio, Studgroup, Department
 
 # Register your models here.
 studentpages_models = [
@@ -13,5 +13,5 @@ studentpages_models = [
     admin.site.register(Lesson),
     admin.site.register(Portfolio),
     admin.site.register(Studgroup),
-    admin.site.register(Subject),
+    admin.site.register(Department),
 ]

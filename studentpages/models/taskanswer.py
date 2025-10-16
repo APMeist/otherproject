@@ -8,3 +8,6 @@ class Taskanswer(models.Model):
     task = models.ForeignKey('Task', on_delete=models.CASCADE)
     filesanswer = models.BinaryField()
     mark = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.answerer} - {self.task} - {self.mark}'

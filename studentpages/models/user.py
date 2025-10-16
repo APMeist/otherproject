@@ -1,5 +1,4 @@
 from django.db import models
-
 #Юзер. Тут пограничим всякое.
 
 

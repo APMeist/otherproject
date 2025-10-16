@@ -9,6 +9,7 @@ class Student(models.Model):
     uniquekey = models.CharField(unique=True, max_length=20)
     group = models.ForeignKey('Studgroup', on_delete=models.CASCADE)
     course = models.IntegerField()
+    login = models.ForeignKey('User', on_delete=models.CASCADE)
     
     def __str__(self):
         return f"{self.name} {self.surname}"
