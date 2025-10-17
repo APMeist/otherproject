@@ -1,0 +1,339 @@
+@font-face {
+    font-family: 'ManufacturingConsent';
+    src: url('../fonts/ManufacturingConsent-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OrbitronBlack';
+    src: url('../fonts/Orbitron-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OrbitronBold';
+    src: url('../fonts/Orbitron-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    overflow: hidden;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transition: opacity 1s;
+    opacity: 1;
+}
+.background.fade {
+    opacity: 0.2;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background: transparent;
+    color: #fff;
+    text-shadow: 0 2px 8px #000;
+}
+
+.logo {
+    width: 120px;
+    max-width: 30vw;
+    margin-bottom: 2vh;
+    filter: drop-shadow(0 2px 8px #000a);
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin: 0 0 1vh 0;
+    letter-spacing: 1px;
+    font-family: 'OrbitronBlack', 'OrbitronBold', 'ManufacturingConsent', Arial, sans-serif;
+}
+
+p {
+    font-size: 1rem;
+    margin: 0 0 1vh 0;
+    letter-spacing: 0.5px;
+}
+
+
+/* Грида форе */
+.foreground-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: clamp(240px, 40vw, 700px);
+    height: clamp(240px, 40vw, 700px);
+    max-width: 95vw;
+    max-height: 80vh;
+    min-width: 160px;
+    min-height: 160px;
+    position: relative;
+    background: #000;
+}
+
+.phrase-grid {
+    display: flex;
+    white-space: normal;
+    word-break: break-word;
+    align-items: center;
+    justify-content: center;
+    margin: 2vh auto 0 auto;
+    width: clamp(200px, 32vw, 600px);
+    height: clamp(48px, 6vw, 120px);
+    max-width: 95vw;
+    background: #000;
+    border: 0.3vw solid #000;
+    border-radius: 0.8vw;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: 0 0.15vw 0.5vw #0003;
+    min-width: 120px;
+    min-height: 48px;
+    transition: opacity 1s;
+}
+.phrase-grid.fade {
+    opacity: 0;
+}
+.phrase-grid {
+    color: #fff;
+    text-shadow: 0 2px 8px #000, 0 0 4px #000;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.fg-image {
+    border: 0.3vw solid #000;
+    border-radius: 0.8vw;
+    background: transparent;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    box-shadow: 0 0.15vw 0.5vw #0003;
+    display: block;
+    min-width: 0;
+    min-height: 0;
+}
+
+/* Лей */
+.content-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4vw;
+    width: 100%;
+    max-width: 100vw;
+    min-height: 60vh;
+}
+
+.text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    max-width: 30vw;
+    flex: 1 1 0;
+    padding-right: 2vw;
+}
+
+/* Майн хуян */
+.main-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100vw;
+}
+
+.image-phrase-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2vw;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h2, .side-title {
+    font-family: 'OrbitronBold', 'OrbitronBlack', 'ManufacturingConsent', Arial, sans-serif;
+}
+.side-title {
+    flex: none;
+    white-space: normal;
+    word-break: break-word;
+    align-self: flex-start;
+    font-size: 1.3rem;
+    margin: 0 2vw 0 0;
+    color: #fff;
+    text-shadow: 0 2px 8px #000, 0 0 4px #000;
+    min-width: 120px;
+    max-width: 20vw;
+    text-align: right;
+}
+
+.image-phrase-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    width: auto;
+}
+
+.foreground-images {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.phrase-grid {
+    margin-top: 0;
+}
+
+/* Лефт кон */
+.main-grid > .left-grids {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5vh;
+}
+
+/* Рандом текст */
+.random-text-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(200px, 22vw, 400px);
+    height: clamp(48px, 6vw, 120px);
+    min-width: 120px;
+    min-height: 48px;
+    background: #000;
+    border: 0.3vw solid #000;
+    border-radius: 0.8vw;
+    box-sizing: border-box;
+    box-shadow: 0 0.15vw 0.5vw #0003;
+    color: #fff;
+    text-shadow: 0 2px 8px #000, 0 0 4px #000;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    pointer-events: none;
+    transition: opacity 1s;
+    z-index: 2;
+}
+.random-text-grid.fade {
+    opacity: 0;
+}
+
+/* Хедевротов (лого х1) */
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 60px;
+    gap: 0.5vw;
+}
+
+.logo {
+    width: 120px;
+    max-width: 30vw;
+    margin-bottom: 0;
+    filter: drop-shadow(0 2px 8px #000a);
+    flex: 0 0 auto;
+}
+.logo-left {
+    order: 0;
+    margin-right: 0;
+}
+.logo-right {
+    order: 2;
+    margin-left: 0;
+}
+
+.header-title {
+    flex: 0 1 auto;
+    text-align: center;
+    margin: 0 0.5vw;
+    order: 1;
+    font-size: 2.8rem;
+    width: auto;
+    line-height: 1.1;
+    letter-spacing: 2px;
+    font-family: 'ManufacturingConsent', 'OrbitronBlack', 'OrbitronBold', Arial, sans-serif;
+}
+
+.side-title {
+    flex: none;
+    align-self: flex-start;
+    font-size: 1.3rem;
+    margin: 0 2vw 0 0;
+    color: #fff;
+    text-shadow: 0 2px 8px #000, 0 0 4px #000;
+    min-width: 120px;
+    text-align: right;
+    transition: opacity 1s;
+}
+.side-title.fade {
+    opacity: 0;
+}
+
+/* ФАДЯ ФОРЕГРАУНД */
+.foreground-images.fade {
+    opacity: 0;
+    transition: opacity 1s;
+}
+.foreground-images {
+    transition: opacity 1s;
+}
+
+/* ФАЙД ДЛЯ ФРАЗ */
+.random-phrase {
+    transition: opacity 1s;
+}
+.random-phrase.fade {
+    opacity: 0;
+}
