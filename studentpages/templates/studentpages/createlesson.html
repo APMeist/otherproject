@@ -10,4 +10,5 @@
         {% csrf_token %} {# Important for security in POST requests #}
         {{ form.as_p }} {# Renders each field in a paragraph tag #}
         <button type="submit">Submit</button>
+    </form>
 {% endblock %}
