@@ -68,7 +68,8 @@ def createTaskAnswer(request):
                 filesanswer=request.POST.get('filesanswer'),
             )
             return redirect('task_answer_page'),
-        
+    context = {'form': form}  
+    return render(request, 'studentpages/task_answer_form.html', context)
 # задание для наших маленьких людей.
 
 
