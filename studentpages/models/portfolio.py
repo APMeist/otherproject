@@ -4,7 +4,7 @@ from django.db import models
 
 class Portfolio(models.Model):
     name = models.CharField(max_length=70)
-    fileportfolio = models.BinaryField()
+    fileportfolio = models.BinaryField(editable=True)
     description = models.TextField()
     studentportowner = models.ForeignKey('Student', related_name='portfolio',
                                          default=None,  on_delete=models.CASCADE)
