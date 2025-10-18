@@ -2,9 +2,9 @@
 from django.shortcuts import render, redirect
 
 from studentpages.models import task, taskanswer
-from .models import Portfolio, lesson
+from .models import Portfolio, Lesson
 from .models import Daylist
-from forms import LessonForm, TaskAnswerForm, TaskForm
+from .forms import LessonForm, TaskAnswerForm, TaskForm
 # Create your views here.
 
 def portfolio_page(request):
@@ -21,26 +21,20 @@ def daylist_page(request):
     return render(request, 'studentpages/studenthome.html', {'daylist': daylist})
 
 
-
-
-
-
 # Логин будет тут - ща похер на него
-
-
 
 # Создание урока
 
 def createLesson(request):
     form = LessonForm()  
     if request.method == 'POST': 
-            lesson.objects.create(
+            Lesson.objects.create(
             teacher=request.teacher,
             name=request.POST.get('name'),
             subject=request.POST.get('subject'),
             description=request.POST.get('description'),
         )
-            return redirect('lesson_page'),
+            return redirect('studentpages/lessons.html'),
 
 # Посмотри, что может быть еще сверху добавить, используй все, что хочешь. Я под таблами. Еще буду сидеть после тебя.    
 
@@ -78,4 +72,14 @@ def createTaskAnswer(request):
 # задание для наших маленьких людей.
 
 
-# Помилуй, Господи, сына твоего Антония. Да пусть код заработает так, как предпологается. Пусть прибудет воля твоя, прибудет царствие твое, прибудет благословение твое. Дай мне сил поставить на коленей недругов своих. Аминь.
+# Логика изменения ответа - нужно дать 
+
+def updateTaskAnswer(request, pk):
+    taskanswer = taskanswer.objects.get(id=pk)
+    form = TaskAnswerForm(instance=taskanswer)
+    if request.method == 'POST':
+        form.save()
+        return redirect('task_answer_page')
+    
+    
+# HTML будут новые - пока сделаны для тестирования тебе и понимания всего. 

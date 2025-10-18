@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+
+{% block content %}
+        <h1>{{lesson.name}}</h1>
+
+        <p>{{lesson.description}}</p>
+
+        <h1>Submit Your Information</h1>
+    <form method="post">
+        {% csrf_token %} {# Important for security in POST requests #}
+        {{ form.as_p }} {# Renders each field in a paragraph tag #}
+        <button type="submit">Submit</button>
+{% endblock %}
