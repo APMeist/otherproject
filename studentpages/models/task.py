@@ -9,7 +9,7 @@ class Task(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     deadline = models.DateTimeField()
-    task = models.BinaryField()
+    task = models.BinaryField(editable=True)
 
     def __str__(self):
         return self.title

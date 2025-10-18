@@ -6,7 +6,7 @@ from django.db import models
 class Taskanswer(models.Model):
     answerer = models.ForeignKey('Student', on_delete=models.CASCADE)
     task = models.ForeignKey('Task', on_delete=models.CASCADE)
-    filesanswer = models.BinaryField()
+    filesanswer = models.BinaryField(editable=True)
     mark = models.IntegerField()
 
     def __str__(self):

@@ -1,31 +1,24 @@
 
 from django.shortcuts import render, redirect
 
-from studentpages.models import task, taskanswer
-from .models import Portfolio, Lesson
-from .models import Daylist
+
+from .models import Daylist, Portfolio, Lesson, task, taskanswer
 from .forms import LessonForm, TaskAnswerForm, TaskForm
 # Create your views here.
 
 def portfolio_page(request):
     author = Portfolio.objects.all()
     return render(request, 'studentpages/studenthome.html', {'author': author})
-    #хз какой писать путь, пускай пока так
-    #не знаю в каком формате тебе лучше, я подумал,
-    # так то по сути через шаблонизатор jinja все можно вывести в нужном уже формате
-    
-# Я с верхней хренью потом поиграюсь. Отображать будем на странице от 5 до 10 наверное файлов или просто 5, похер
 
 def daylist_page(request):
     daylist = Daylist.objects.all()
     return render(request, 'studentpages/studenthome.html', {'daylist': daylist})
 
-
 # Логин будет тут - ща похер на него
 
 # Создание урока
 
-def createLesson(request):
+def create_lesson(request):
     form = LessonForm()  
     if request.method == 'POST': 
             Lesson.objects.create(
