@@ -78,6 +78,8 @@ def updateTaskAnswer(request, pk):
     taskanswer = taskanswer.objects.get(id=pk)
     form = TaskAnswerForm(instance=taskanswer)
     if request.method == 'POST':
+        task.name = request.POST.get('title')
+        task.fileanswer = request.POST.get('fileanswer')
         form.save()
         return redirect('task_answer_page')
     
