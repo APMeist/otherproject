@@ -1,17 +1,12 @@
-
 from django.shortcuts import render, redirect
-
-from studentpages.models import task
-
-
+# from studentpages.models import task
 from .models import Daylist, Portfolio, Lesson, Task, Taskanswer
 from .forms import LessonForm, TaskAnswerForm, TaskForm
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-# Create your views here.
+# from django.contrib import messages
+# from django.contrib.auth import authenticate, login, logout
+# from django.contrib.auth.decorators import login_required
 
-def portfoliopage(request):
+def portfolio_page(request):
     author = Portfolio.objects.all()
     return render(request, 'studentpages/portfoliopage.html', {'author': author})
 
@@ -21,33 +16,9 @@ def daylist_page(request):
 
 # Логин будет тут - ща похер на него
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Создание урока
 
-def createlesson(request):
+def create_lesson(request):
     form = LessonForm()  
     if request.method == 'POST': 
             Lesson.objects.create(
@@ -56,7 +27,10 @@ def createlesson(request):
             subject=request.POST.get('subject'),
             description=request.POST.get('description'),
         )
-            return redirect('studentpages/lessons.html'),
+            context = {'form': form}
+            return redirect('studentpages/lessons.html', context),
+    else:
+        return render(request, '')
 
 # Посмотри, что может быть еще сверху добавить, используй все, что хочешь. Я под таблами. Еще буду сидеть после тебя.    
 
@@ -67,7 +41,7 @@ def createlesson(request):
     
     
     
-def createTask(request):
+def create_task(request):
     form = TaskForm()  
     if request.method == 'POST': 
             Task.objects.create(
@@ -76,14 +50,13 @@ def createTask(request):
                 task=request.POST.get('task'),
                 deadline=request.POST.get('deadline'),
             )
-            return redirect('task_page'),
+            context = {'form': form}
+            return redirect('task_page', context),
 
-def updateTask(request, pk):
-    form = TaskForm(instance=task)
 # Создание задания, тут потом выведем рестрикшн только лишь для учителя
 
 
-def createTaskAnswer(request):
+def create_task_answer(request):
     form = TaskAnswerForm
     if request.method == 'POST':
             Taskanswer.objects.create(
@@ -99,7 +72,7 @@ def createTaskAnswer(request):
 
 # Логика изменения ответа - нужно дать 
 
-def updateTaskAnswer(request, pk):
+def update_task_answer(request, pk):
     taskanswer = Taskanswer.objects.get(pk=pk)
     form = TaskAnswerForm(instance=taskanswer)
     if request.method == 'POST':
@@ -107,10 +80,8 @@ def updateTaskAnswer(request, pk):
         Task.fileanswer = request.POST.get('fileanswer')
         form.save()
         return redirect('taskanswer')
-    context = {'form': form}  
-    return render(request, 'taskanswerform.html', context)   
-    
-# HTML будут новые - пока сделаны для тестирования тебе и понимания всего. 
-
+    context = {'form': form}
+    return render(request, 'studentpages/taskanswerform.html', context)
+# HTML будут новые - пока сделаны для тестирования тебе и понимания всего.
 # Я просто хочу тут написать - я ненавижу все, особенно, когда сидеть надо с 5 утра. Три энергетика и не один не заработал
 
