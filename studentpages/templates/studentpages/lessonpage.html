@@ -1,13 +1,2 @@
 {% extends 'main.html' %}
 
-<h1>Уроки на сегодня {{ day|date:"F d, Y" }}</h1>
-
-{% if lessons %}
-    <ul>
-        {% for lesson in lessons %}
-            <li>{{ lesson.start_time|date:"H:i" }} - {{ lesson.title }}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Нет уроков никаких</p>
-{% endif %}
