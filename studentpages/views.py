@@ -1,6 +1,8 @@
 
 from django.shortcuts import render, redirect
 
+from studentpages.models import task
+
 
 from .models import Daylist, Portfolio, Lesson, Task, Taskanswer
 from .forms import LessonForm, TaskAnswerForm, TaskForm
@@ -9,19 +11,43 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-def portfolio_page(request):
+def portfoliopage(request):
     author = Portfolio.objects.all()
-    return render(request, 'studentpages/studenthome.html', {'author': author})
+    return render(request, 'studentpages/portfoliopage.html', {'author': author})
 
 def daylist_page(request):
     daylist = Daylist.objects.all()
-    return render(request, 'studentpages/studenthome.html', {'daylist': daylist})
+    return render(request, 'studentpages/lessonpage.html', {'daylist': daylist})
 
 # Логин будет тут - ща похер на него
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Создание урока
 
-def create_lesson(request):
+def createlesson(request):
     form = LessonForm()  
     if request.method == 'POST': 
             Lesson.objects.create(
@@ -67,7 +93,7 @@ def createTaskAnswer(request):
             )
             return redirect('task_answer_page'),
     context = {'form': form}  
-    return render(request, 'studentpages/task_answer_form.html', context)
+    return render(request, 'studentpages/taskanswerform.html', context)
 # задание для наших маленьких людей.
 
 
@@ -80,8 +106,9 @@ def updateTaskAnswer(request, pk):
         Task.name = request.POST.get('title')
         Task.fileanswer = request.POST.get('fileanswer')
         form.save()
-        return redirect('task_answer_page')
-    
+        return redirect('taskanswer')
+    context = {'form': form}  
+    return render(request, 'taskanswerform.html', context)   
     
 # HTML будут новые - пока сделаны для тестирования тебе и понимания всего. 
 
