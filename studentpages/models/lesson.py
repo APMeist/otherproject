@@ -5,6 +5,8 @@ class Lesson(models.Model):
     teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, related_name='lesson')
     name = models.CharField(max_length=100)
     group = models.ForeignKey('Studgroup', on_delete=models.CASCADE)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
 
     def __str__(self):
         return self.name

@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+{% block content %}
+        <h1>{{lesson.name}}</h1>
+
+        <p>{{lesson.description}}</p>
+
+        <h1>Задать урок</h1>
+    <form method="post">
+        {% csrf_token %} 
+        {{ form.as_p }} 
+{% endblock %}

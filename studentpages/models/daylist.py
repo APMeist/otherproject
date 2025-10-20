@@ -2,10 +2,8 @@ from django.db import models
 
 class Daylist(models.Model):
     lesson = models.ForeignKey('Lesson', on_delete=models.CASCADE, related_name='timetable_entries')
-    date = models.DateField()
-    start_time = models.TimeField()
-    end_time = models.TimeField()
-    
+
+
     class Meta:
         unique_together = ('date', 'start_time')
 

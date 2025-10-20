@@ -4,6 +4,9 @@ from django.shortcuts import render, redirect
 
 from .models import Daylist, Portfolio, Lesson, task, taskanswer
 from .forms import LessonForm, TaskAnswerForm, TaskForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def portfolio_page(request):
@@ -49,6 +52,8 @@ def createTask(request):
             )
             return redirect('task_page'),
 
+def updateTask(request, pk):
+    form = TaskForm(instance=task)
 # Создание задания, тут потом выведем рестрикшн только лишь для учителя
 
 
@@ -79,3 +84,6 @@ def updateTaskAnswer(request, pk):
     
     
 # HTML будут новые - пока сделаны для тестирования тебе и понимания всего. 
+
+# Я просто хочу тут написать - я ненавижу все, особенно, когда сидеть надо с 5 утра. Три энергетика и не один не заработал
+
