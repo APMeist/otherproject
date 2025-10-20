@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 
 
-from .models import Daylist, Portfolio, Lesson, task, taskanswer
+from .models import Daylist, Portfolio, Lesson, Task, Taskanswer
 from .forms import LessonForm, TaskAnswerForm, TaskForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -44,7 +44,7 @@ def create_lesson(request):
 def createTask(request):
     form = TaskForm()  
     if request.method == 'POST': 
-            task.objects.create(
+            Task.objects.create(
                 title=request.POST.get('title'),
                 description=request.POST.get('description'),
                 task=request.POST.get('task'),
@@ -60,7 +60,7 @@ def updateTask(request, pk):
 def createTaskAnswer(request):
     form = TaskAnswerForm
     if request.method == 'POST':
-            taskanswer.objects.create(
+            Taskanswer.objects.create(
                 answerer=request.POST.get('answerer'),
                 task=request.POST.get('task'),
                 filesanswer=request.POST.get('filesanswer'),
@@ -74,11 +74,11 @@ def createTaskAnswer(request):
 # Логика изменения ответа - нужно дать 
 
 def updateTaskAnswer(request, pk):
-    taskanswer = taskanswer.objects.get(id=pk)
+    taskanswer = Taskanswer.objects.get(pk=pk)
     form = TaskAnswerForm(instance=taskanswer)
     if request.method == 'POST':
-        task.name = request.POST.get('title')
-        task.fileanswer = request.POST.get('fileanswer')
+        Task.name = request.POST.get('title')
+        Task.fileanswer = request.POST.get('fileanswer')
         form.save()
         return redirect('task_answer_page')
     
