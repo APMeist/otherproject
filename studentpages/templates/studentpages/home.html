@@ -1,13 +1,11 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div class=«Loginbut»>
     <form method="POST" action="">
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="Register" />
     </form>
     <a href="{% url 'login' %}">Login</a>
-</div>
 
 {% endblock %}
