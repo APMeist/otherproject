@@ -11,9 +11,5 @@ from django.shortcuts import render
 # Глав.страница
 
 
-def main_page(request):
-    return render(request, 'mainsite/mainpage.html')
 
-def about_page(request):
-    return render(request, 'mainsite/about.html')
 

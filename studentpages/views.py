@@ -1,10 +1,45 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
+from studentpages.models.user import User
 # from studentpages.models import task
 from .models import Daylist, Portfolio, Lesson, Task, Taskanswer
 from .forms import LessonForm, TaskAnswerForm, TaskForm
-# from django.contrib import messages
-# from django.contrib.auth import authenticate, login, logout
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+# from django.contrib.auth.decorators import login_required - Вот что от тебя требую.
+
+
+def studenthome_page(request):
+ return render(request, 'studentpages/studenthome.html')
+
+def loginPage(request):
+    page = 'login'
+    if request.user.is_authenticated:
+        return redirect('home')
+
+    if request.method == 'POST':
+        uslog = request.POST.get('uslog').lower()
+        password = request.POST.get('password')
+
+        try:
+            user = User.objects.get(uslog=uslog)
+        except:
+            messages.error(request, 'Пусто')
+
+        user = authenticate(request, uslog=uslog, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Ничего нет')
+
+    context = {'page': page}
+    return render(request, 'studentpages/home.html', context)
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect('home')
 
 def portfolio_page(request):
     author = Portfolio.objects.all()
