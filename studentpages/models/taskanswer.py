@@ -7,7 +7,7 @@ class Taskanswer(models.Model):
     answerer = models.ForeignKey('Student', on_delete=models.CASCADE)
     task = models.ForeignKey('Task', on_delete=models.CASCADE)
     filesanswer = models.FileField(upload_to='taskanswers/')
-    mark = models.IntegerField()
+    mark = models.IntegerField(null=True)
 
     def __str__(self):
         return f'{self.answerer} - {self.task} - {self.mark}'
