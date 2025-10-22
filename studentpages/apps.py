@@ -4,3 +4,6 @@ from django.apps import AppConfig
 class StudentpagesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'studentpages'
+
+    def ready(self):
+        import studentpages.signals

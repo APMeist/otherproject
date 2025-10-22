@@ -2,17 +2,28 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from studentpages.models.user import User
 from .models import Daylist, Portfolio, Lesson, Task, Taskanswer, Student
-from .forms import LessonForm, TaskAnswerForm, TaskForm
+from .forms import LessonForm, TaskAnswerForm, TaskForm, ChangeMarkForm
 from django.contrib.auth import authenticate, login, logout
 # from django.contrib.auth.decorators import login_required - Вот что от тебя требую.
 
+
+# Страницы сайтов
 def home_page(request):
     return render(request, 'studentpages/home.html')
-
 
 def studenthome_page(request):
     return render(request, 'studentpages/studenthome.html')
 
+def portfolio_page(request):
+    author = Portfolio.objects.all()
+    return render(request, 'studentpages/portfoliopage.html', {'author': author})
+
+def daylist_page(request):
+    daylist = Daylist.objects.all()
+    return render(request, 'studentpages/lessonpage.html', {'daylist': daylist})
+
+
+# Страницы входа и выхода из аккаунта
 def loginPage(request):
     page = 'login'
     if request.user.is_authenticated:
@@ -42,18 +53,8 @@ def logoutUser(request):
     logout(request)
     return redirect('studenthome')
 
-def portfolio_page(request):
-    author = Portfolio.objects.all()
-    return render(request, 'studentpages/portfoliopage.html', {'author': author})
 
-def daylist_page(request):
-    daylist = Daylist.objects.all()
-    return render(request, 'studentpages/lessonpage.html', {'daylist': daylist})
-
-# Логин будет тут - ща похер на него
-
-# Создание урока
-
+# CRUD lesson
 def create_lesson(request):
     form = LessonForm()  
     if request.method == 'POST': 
@@ -68,15 +69,14 @@ def create_lesson(request):
     else:
         return render(request, 'studentpages/studenthome.html',)
 
-# Посмотри, что может быть еще сверху добавить, используй все, что хочешь. Я под таблами. Еще буду сидеть после тебя.    
 
 # Функция изменения урока - она может содержать в себе изменения. Нам надо посмотреть - какие изменения необходимо делать. А так - сделать колонку в БД как кабинет и все.
 #def updateLesson(request, pk):
     #lesson = lesson.objects.get(id=pk)
     #form = LessonForm(instance=lesson)
     
-    
-    
+
+# CRUD task
 def create_task(request):
     form = TaskForm()  
     if request.method == 'POST': 
@@ -133,3 +133,16 @@ def update_task_answer(request, pk):
     context = {'form': form}
     return render(request, 'studentpages/task_answer_form.html', context)
 
+def change_mark(request, pk):
+    taskanswer = Taskanswer.objects.get(pk=pk)
+    form = ChangeMarkForm(instance=taskanswer)
+    if request.method == 'POST':
+        form = ChangeMarkForm(request.POST, instance=taskanswer)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'оценка сохранена')
+            return redirect('task')
+        else:
+            messages.error(request, 'Ошибка при сохранении оценки')
+    context = {'form': form}
+    return render(request, 'studentpages/change_mark.html', context)

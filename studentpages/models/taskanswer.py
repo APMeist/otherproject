@@ -9,5 +9,12 @@ class Taskanswer(models.Model):
     filesanswer = models.FileField(upload_to='taskanswers/')
     mark = models.IntegerField(null=True)
 
+    class Meta:
+        permissions = [
+            ('Change_fileanswer', 'Can change file for fileanswer'),
+            ('Change_mark', 'Can evaluate work in taskanswer'),
+        ]
+
+
     def __str__(self):
         return f'{self.answerer} - {self.task} - {self.mark}'

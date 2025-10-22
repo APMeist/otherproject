@@ -25,5 +25,11 @@ class TaskAnswerForm(ModelForm):
     class Meta:
              model = Taskanswer
              fields = ['answerer', 'task', 'filesanswer']
+
+
+class ChangeMarkForm(ModelForm):
+    class Meta:
+        model = Taskanswer
+        fields = ['mark']
              
 # по формам вроде все - вопрос теперь по рестрикшонам.
