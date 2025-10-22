@@ -19,7 +19,7 @@ def loginPage(request):
         return redirect('studenthome')
 
     if request.method == 'POST':
-        uslog = request.POST.get('uslog').lower()
+        uslog = request.POST.get('username')
         password = request.POST.get('password')
 
         try:
@@ -27,7 +27,7 @@ def loginPage(request):
         except:
             messages.error(request, 'Пусто')
 
-        user = authenticate(request, uslog=uslog, password=password)
+        user = authenticate(request, username=uslog, password=password)
 
         if user is not None:
             login(request, user)
