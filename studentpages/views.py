@@ -6,6 +6,9 @@ from .forms import LessonForm, TaskAnswerForm, TaskForm
 from django.contrib.auth import authenticate, login, logout
 # from django.contrib.auth.decorators import login_required - Вот что от тебя требую.
 
+def home_page(request):
+    return render(request, 'studentpages/home.html')
+
 
 def studenthome_page(request):
     return render(request, 'studentpages/studenthome.html')
@@ -33,7 +36,7 @@ def loginPage(request):
             messages.error(request, 'Ничего нет')
 
     context = {'page': page}
-    return render(request, 'studentpages/home.html', context)
+    return render(request, 'studentpages/login.html', context)
 
 def logoutUser(request):
     logout(request)
