@@ -1,6 +1,10 @@
 {% extends 'main.html' %}
 
 {% block content %}
+    <ul>
+        {% for lesson in lessons %}
+            {{ lessons.name }}
+        {% endfor %}
 
-
+    </ul>>
 {% endblock %}

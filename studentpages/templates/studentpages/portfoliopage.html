@@ -1,6 +1,9 @@
 {% extends 'main.html' %}
 
 {% block content %}
- 
-
+    <ul>
+    {% for portfolio in portfolios %}
+        <li>{{ portfolio.author }} - {{ portfolio.description }}</li>>
+    {% endfor %}
+    </ul>>
 {% endblock %}

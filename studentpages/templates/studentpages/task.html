@@ -1,6 +1,9 @@
 {% extends 'main.html' %}
 
 {% block content %}
-
-
+    <ul>
+    {% for task in tasks %}
+        <li>{{ task.title }} - {{ task.description }} - {{ task.deadline }}</li>>
+    {% endfor %}
+    </ul>>
 {% endblock %}

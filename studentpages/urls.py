@@ -11,7 +11,6 @@ urlpatterns = [
     
     path(r'create-lesson/', views.create_lesson, name='create_lesson'),
     #task & task-answer urls 
-    #   - Я надеюсь, мне кажется, что сверху писала ИИшка. : А
     path(r'create-task/', views.create_task, name='create_task'),
     path(r'create-task-answer/', views.create_task_answer, name='create_task_answer'),
     path(r'update-task-answer/<int:id>', views.update_task_answer, name='update_task_answer'),

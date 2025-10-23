@@ -7,13 +7,17 @@ from django.contrib.auth import authenticate, login, logout
 # from django.contrib.auth.decorators import login_required - Вот что от тебя требую.
 
 
-# Страницы сайтов
 def home_page(request):
     return render(request, 'studentpages/home.html')
 
 def studenthome_page(request):
     return render(request, 'studentpages/studenthome.html')
-
+# CRUD portfolio
+def portfolio_list_view(request):
+    author = Portfolio.objects.get(id=id).name
+    description = Portfolio.objects.get().description
+    context = {'author': author, 'description': description}
+    return render(request, 'studentpages/portfoliopage.html', context)
 def portfolio_page(request):
     author = Portfolio.objects.all()
     return render(request, 'studentpages/portfoliopage.html', {'author': author})
@@ -23,7 +27,6 @@ def daylist_page(request):
     return render(request, 'studentpages/lessonpage.html', {'daylist': daylist})
 
 
-# Страницы входа и выхода из аккаунта
 def loginPage(request):
     page = 'login'
     if request.user.is_authenticated:
@@ -69,14 +72,17 @@ def create_lesson(request):
     else:
         return render(request, 'studentpages/studenthome.html',)
 
+def lesson_list_view(request):
+    lessons = Lesson.objects.all().order_by('datetime')
+    context = {'lessons': lessons}
+    return render(request, 'studentpages/lessonpage.html', context)
 
-# Функция изменения урока - она может содержать в себе изменения. Нам надо посмотреть - какие изменения необходимо делать. А так - сделать колонку в БД как кабинет и все.
-#def updateLesson(request, pk):
-    #lesson = lesson.objects.get(id=pk)
-    #form = LessonForm(instance=lesson)
-    
 
 # CRUD task
+def task_list_view(request):
+    tasks = Task.objects.all().order_by('datetime')
+    context = {'tasks': tasks}
+    return  render(request, 'studentpages/task.html', context)
 def create_task(request):
     form = TaskForm()  
     if request.method == 'POST': 
@@ -91,7 +97,6 @@ def create_task(request):
     else:
         return render(request, 'studentpages/studenthome.html',)
 
-# Создание задания, тут потом выведем рестрикшн только лишь для учителя
 
 
 def create_task_answer(request):

@@ -7,14 +7,12 @@ class StudentPortfolio(ModelForm):
         fields = ['name','fileportfolio','description']
 
 
-# Создание урока - для админов возможно сделать отдельно модель в таблице тип просмотра
 class LessonForm(ModelForm):
      class Meta:
         model = Lesson
         fields = ['group', 'subject', 'teacher', 'name']
         
         
- # Додумай сам       
 class TaskForm(ModelForm):
     class Meta:
         model = Task
@@ -31,5 +29,3 @@ class ChangeMarkForm(ModelForm):
     class Meta:
         model = Taskanswer
         fields = ['mark']
-             
-# по формам вроде все - вопрос теперь по рестрикшонам.
